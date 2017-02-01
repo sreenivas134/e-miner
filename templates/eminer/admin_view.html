@@ -1,0 +1,28 @@
+{% extends 'eminer/base.html' %}
+{% load django_markdown %}
+{% block index_view %}
+        <div class='notpublished_posts'>
+            {% if not_published %}
+            <h3>Not Published Posts:</h3>
+            <ol>
+            {% for not_publish in not_published %}
+            <li><a style='color:#333; text-decoration:none;' href="/{{ not_publish.slug }}/">{{ not_publish.title }}</a><a style='color:#aaa; text-decoration:none;font-size:15px;' href="/edit/{{ not_publish.slug }}/"> edit /</a><a style='color:#aaa; text-decoration:none;font-size:15px;' href="/publish/{{ not_publish.slug }}"> publish</a></li>
+            <p style='font-size:12px;color:#aaa;'>Last Modification on:{{ not_publish.modified }}</p>
+            {% endfor %}</ol>
+            {% endif %}
+
+        </div>
+        <div class='published_posts'>
+    {% if published_posts %}
+            <h3>Published Posts:</h3>
+            <ol>
+            {% for publish in published_posts %}
+            <li><a style='color:#333; text-decoration:none;' href="/{{ publish.slug }}/">{{ publish.title }}</a><a style='color:#aaa; text-decoration:none;font-size:15px;' href="/edit/{{ publish.slug }}/"> edit /</a><a style='color:#aaa; text-decoration:none;font-size:15px;' href="/publish/{{ publish.slug }}"> publish</a></li>
+            <p style='font-size:12px;color:#aaa;'>Published on:{{ publish.posted }}<br />
+                Last Modification on:{{ publish.modified }}
+                </p>
+            {% endfor %}</ol>
+            {% endif %}
+
+        </div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'eminer/base.html' %}
+{% load django_markdown %}
+{% load static %}
+{% block index_view %}
+    <br/><br/><br/>
+    <h3>E-Miner</h3>
+    <ul>
+        <li><p>This whole blog is being developed in Django 1.7 a Python's dynemic MVC framework!</p></li>
+        <li><p>I develope this blog to show my passion towards Python and Data analysis. I've just started developing this blog. </p></li>
+        <li><p>This blog has basic functionalities like user registration and posting options to the registered users.</p></li>
+<li><h4>Functionality:</h4></li><ul>
+        <li><p>A normal registred user can write a post related to academics or education, but they can't publish it on the blog(i.e only published posts are shared publicly).</p></li>
+        <li><p>Those posts completed are scrutinized by the admin and they get posted if they are valid.</p></li>
+        </ul></ul>
+        <div class='author_view'>
+            <h3>About the Author:</h3>
+            <div id='author_img'><img src="{% static 'images/author.png' %}"/></div>
+            <div id='author_des'><h4>Sreenivasa Rao Pallapu</h4>
+            <p>A programming enthusiast. Passionate to live in the field of Machine Learning,
+            Artificial Intelligence and Data Science to fulfill the thrust for revolutionary work.
+            Artificial Intelligence, Data Mining and Analysis are my major interests.
+            Has foundations in Digital Image processing and Data analysis libraries like Numpy, Pandas, etc.
+            Working towards Machine Learning, Data analysis, Python image processing and Computer vision...</p>
+
+            <p>I'm a positive, motivated, and hard-working person who is keen to learn quickly and contribute.
+            My technical skills are combined with excellent communication skills that allow me to work effectively and positively and get along well with others.</p>
+
+            <ul>
+                <li>Graduation:
+                <ul>
+                    <li>Graduated from IIIT-Nuzvid(RGUKT).</li>
+                    <li>Major: Electronics and Communications</li>
+                    <li>Minor: Computer Science and Engineering</li></li>
+                </ul>
+                <li>Key Skills:
+                <ul>
+                    <li>Good fluency in Python language, and Linux.</li>
+                    <li>Foundations in Data mining and its libraries like Numpy, Pandas etc…</li>
+                    <li>Basic Knowledge in Django, a web development package of Python</li>
+                    <li>Good potency at C programming.</li>
+                    <li>Good knowledge on Git version control system.</li>
+                    <li>Foundations in Digital image processing.</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <p>...and ready to learn any technology and work on any platform.</p>
+                </ul>
+                <li>Professional Links:</li>
+                <ul>
+                    <li><a href='https://github.com/sreenivas134'>Git hub</a></li>
+                    <li><a href='https://in.linkedin.com/in/sreenivas134'>LinkedIn</a></li>
+                    <li><a href='http://www.codeeval.com/profile/sreenivas134/'>CodeEval</a></li>
+                </ul>
+                </li>
+                <li>Contact:</li>
+                <ul>
+                    <li><a href='mailto:sreenivaspallapu.iiit@gmail.com'>sreenivaspallapu.iiit@gmail.com</a></li>
+                </ul>
+                </li>
+            </ul></div>
+        </div>
+{% endblock %}

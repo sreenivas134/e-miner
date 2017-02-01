@@ -1,0 +1,43 @@
+{% extends 'eminer/base.html' %}
+{% load crispy_forms_tags %}
+{% load django_markdown %}
+{% block index_view %}
+        <div class='post_form'>
+                {% crispy form %}
+        </div>
+        <div class='form_field'>
+            <a id='add_tag' href='/addtag/' target='_blank'>Add Tag</a>
+            <!--<script>-->
+            <!--    $('#add_tag').click(function(){-->
+            <!--        var tag_name = window.prompt('Enter the Tag You want to Add');-->
+            <!--        $.ajax({url: "/addtag/",-->
+        		  <!--        type : "POST",-->
+        		  <!--        dataType:"json",-->
+        		  <!--        data :-->
+        		  <!--        {-->
+        		  <!--          "tweet_id" : JSON.stringify(tag_name),-->
+        		  <!--          'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val(),-->
+
+        		  <!--        },-->
+        		  <!--  success: function(response)-->
+        		  <!--  {-->
+        		  <!--  	$('#loading').append(response['embed_tweet']);-->
+        		  <!--  }-->
+
+        		  <!--  });-->
+            <!--    })-->
+            <!--</script>-->
+        </div>
+        <div class='not_published'>
+            {% if not_published %}
+            <h3>Not Published Posts:</h3>
+            <ol>
+            {% for not_publish in not_published %}
+            <li><a style='color:#333; text-decoration:none;' href="/{{ not_publish.slug }}/">{{ not_publish.title }}</a>
+            <a style='color:#aaa; text-decoration:none;' href="/edit/{{ not_publish.slug }}/"> edit</a></li>
+            <p style='font-size:15px;color:#aaa;'>Last Modification on:{{ not_publish.modified }}</p>
+            {% endfor %}</ol>
+            {% endif %}
+
+</div>
+{% endblock %}

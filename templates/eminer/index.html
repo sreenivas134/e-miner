@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends 'eminer/base.html' %}
+{% load crispy_forms_tags %}
+{% load django_markdown %}
+{% load static %}
+{% block index_view %}
+        {% for post in posts %}
+        <div class='post_head'><a style='text-decoration:none;color:#11A6D4;font-family:Arial Black,Arial Bold,Gadget,sans-serif;' href="/{{ post.slug }}/"><h2>{{ post.title }}</h2></a></div>
+        <div class='tags'>{{post.modified }} | Tagged Under:
+            {% for tags in post.tag.all %}
+            <a style='text-decoration:none;color:#444;' href="/tags/{{ tags }}">{{ tags }}{% if not forloop.last %}, {% endif %}</a>
+            {% endfor %}
+            </div><br/><hr/>
+        <div class='post_body'>{{ post.body|markdown }}</div>
+        {% include 'eminer/social.html' %}
+        <hr/><br /><hr />
+        {% empty %}
+            Sorry, No Older posts Exist!
+        {% endfor %}
+
+{% endblock %}

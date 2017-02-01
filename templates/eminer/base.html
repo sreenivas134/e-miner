@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+{% load static %}
+{% load django_markdown %}
+
+
+<html>
+<head>
+    <link rel="shortcut icon" href="{% static 'images/logo1.png' %}">
+    <title>{% block title %}E-miner.com {% endblock %}</title>
+    <link rel='stylesheet' type='text/css' href="{% static 'css/base.css' %}"/>
+    <link rel='stylesheet' type='text/css' href="{% static 'css/default.css' %}"/>
+
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <!--<script src="{% static 'ckeditor/ckeditor.js' %}"></script>-->
+    <!--<script src="//cdn.ckeditor.com/4.5.1/standard/ckeditor.js"></script>-->
+
+    <script>
+    tinymce.init({selector:'textarea',
+        plugins:
+            ["codesample advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars code fullscreen",
+            "insertdatetime media nonbreaking save table contextmenu directionality",
+            "emoticons template paste textcolor colorpicker textpattern autoresize fullpage"],
+        toolbar: "fullscreen emoticons preview image link charmap table fullpage forecolor backcolor",
+        content_css: "{% static 'build/mathquill.css' %}",
+        gecko_spellcheck : true,
+        browser_spellcheck : true,
+    });
+    </script>
+
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>jQuery(document).ready(function(){
+        $("code").addClass("language-javascript");
+    	$("code").addClass("language-python language-markup");
+
+    	$("pre").addClass("line-numbers");
+    // 	$("textarea").attr("name","editor1");
+    // 	$("textarea").attr("id","editor1");
+
+    });
+	</script>
+
+
+
+
+    <meta name="google-site-verification" content="YjPd2E1o3hssK6RytqDmazbWbU-o7oZarzn3Nq4NHaA" />
+
+    <link rel="stylesheet" href="{% static 'css/prism.css' %}">
+    <script src="{% static 'js/prism.js' %}"></script>
+    <style type='text/css'>
+        #container2{
+            left:150px;
+        }
+        #wrapper > div{
+            display:block;
+            position:relative;
+        }
+        #wrapper{
+            background-color:#fcfcfc;
+        }
+        .index_html{
+            display:block;
+        }
+    </style>
+
+
+
+</head>
+<body>
+    <div class="next_page">
+    {% if count %}
+
+            <ul>
+
+            <li id='prev_page'><a style="text-decoration:none;" href="/pages/{{count|add:'1'}}"><img src = "{% static 'images/url3.png' %}"/>Previous Post</a></li>
+            {% if count != 1 %}
+            <li id='nex_page'><a style="text-decoration:none;" href="/pages/{{count|add:'-1'}}">Next Post<img src = "{% static 'images/url3.png' %}"/></a></li>
+            {% endif %}
+            </ul><br/>
+    {% endif %}
+    </div>
+
+<div id='wrapper'>
+    <div id="fb-root" ></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+
+    <div id="head" style="background: url({% static 'images/img02.jpg' %}) no-repeat; background-size:cover;">
+      <div id="header">
+      <div id="topmenu">
+        <ul>
+          <li><a href="{% url 'home' %}" id="topmenu1" accesskey="1" style="background: url({% static 'images/img03.gif' %}) no-repeat left center;">Home</a></li>
+          <li><a href="mailto:sreenivaspallapu.iiit@gmail.com" id="topmenu2" accesskey="2" style="background: url({% static 'images/img04.gif' %}) no-repeat left center;">Contact</a></li>
+          <li><a href="#" id="topmenu3" accesskey="3" style="background: url({% static 'images/img05.gif' %}) no-repeat left center;">Sitemap</a></li>
+        </ul>
+      </div>
+      <div id="logo">
+        <h1><a href="http://eminer.pythonanywhere.com">E-Miner</a></h1>
+        <h2 style="color:white;">Following my passion!</h2>
+      </div>
+      </div>
+    </div><br/>
+            <div class='nav_bar' id='menu' style="background: url({% static 'images/img06.gif' %}) repeat-x;">
+                <ul>
+                <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'home' %}">Home</a></li>
+                <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'about' %}">About</a></li>
+                {% if user.is_superuser %}
+                <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'add_post' %}">AddPost</a></li></ul>
+                {% endif %}
+                {% if user.is_superuser %}
+                <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'publisher-view' %}">AdminView</a></li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'auth_logout' %}">LogOut</a></li>
+                {% else %}
+                <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'registration_register' %}">Register Here</a></li>
+                <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'auth_login' %}">Login</a></li>
+                {% endif %}
+            </div>
+    <div class='index_view' id='container2'>
+            <div class='side_view' id='sidebar'>
+                <div id="follow_author" class="boxed" style="background: url({% static 'images/img07.gif' %}) repeat-x">
+                    <h4 class="title" style="background: url({% static 'images/img08.gif' %}) no-repeat 10px 50%;">Follow Author on ...</h4>
+                    <ul>
+                    <li><a href='https://in.linkedin.com/in/sreenivas134'><img src="{% static 'images/linkedin.png' %}"/></a></li>
+                    <li><a href='https://www.facebook.com/sreenivas.pallapu'><img src="{% static 'images/facebook.png' %}"/></a></li>
+                    <li><a href='https://twitter.com/sreenivaseng'><img src="{% static 'images/twitter.png' %}"/></a></li>
+                    <li><a href='https://in.pinterest.com/sreenivas134/'><img src="{% static 'images/pinterest.png' %}"/></a></li>
+                    </ul>
+                </div>
+                <div id="follow_author" class="boxed" style="background: url({% static 'images/img07.gif' %}) repeat-x">
+                    <h4 class="title" style="background: url({% static 'images/img08.gif' %}) no-repeat 10px 50%;">Facebook Followers:</h4>
+                    <div class="fb-page" data-href="https://www.facebook.com/Edataminer" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"></div>
+                </div>
+
+                <div id="updates" class="boxed" style="background: url({% static 'images/img07.gif' %}) repeat-x">
+                    <h4 class="title" style="background: url({% static 'images/img08.gif' %}) no-repeat 10px 50%;">Recent Posts:</h4>
+                    {% if recent %}
+                    <ul>
+                    {% for post in recent %}
+                        <li><h5 style="background: url({% static 'images/img09.gif' %}) no-repeat left center">{{ post.modified }}</h5>
+                        <p><a href="/{{ post.slug }}/">{{ post.title }}</a></p></li>
+                    {% endfor %}
+                     </ul>
+                    {% endif %}
+
+                </div>
+
+                <!------------------------------------------------------------------ Hit Counter ------------------------------------------------------------------>
+
+                <div id="follow_author" class="boxed" style="background: url({% static 'images/img07.gif' %}) repeat-x">
+                    <h4 class="title" style="background: url({% static 'images/img08.gif' %}) no-repeat 10px 50%;">So far ...</h4><br/>
+                    <p style="width:200px;margin-left:20px;"><!-- Start of StatCounter Code for Default Guide -->
+                        <script type="text/javascript">
+                        var sc_project=10509582;
+                        var sc_invisible=0;
+                        var sc_security="85b08e25";
+                        var sc_text=2;
+                        var scJsHost = (("https:" == document.location.protocol) ?
+                        "https://secure." : "http://www.");
+                        document.write("<sc"+"ript type='text/javascript' src='" +
+                        scJsHost+
+                        "statcounter.com/counter/counter.js'></"+"script>");
+                        </script>
+                        <noscript><div class="statcounter"><a title="web stats"
+                        href="http://statcounter.com/free-web-stats/"
+                        target="_blank"><img class="statcounter"
+                        src="http://c.statcounter.com/10509582/0/85b08e25/0/"
+                        alt="web stats"></a></div></noscript>
+                        <!-- End of StatCounter Code for Default Guide -->
+                        People been here!
+                        <br/>
+                        Your IP Address is {{ user_ip }}
+
+
+
+
+
+                    </p>
+                </div>
+            </div>
+
+            <!-----------------------------------------------------------posts goes here ------------------------------------------------------------------------------->
+            <div class='post_view'><div class='index_html'>{% block index_view %}{% endblock %}</div>
+            </div>
+        <br/>
+
+    </div>
+
+    <br/>
+    <div class='copy_view' id='footer'>
+        <span style='position:relative;top:15px;float:right;'>&copy 2015 Eminer.pythonanywhere.com</span>
+    </div>
+</div>
+</body>
+</html>

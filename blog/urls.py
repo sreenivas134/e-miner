@@ -12,4 +12,4 @@ urlpatterns = patterns('',
     url(r'^editor/', include(admin.site.urls)),
     url(r'^markdown/', include('django_markdown.urls')),
     url(r'^', include('eminer.urls')),
-) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+) + static(settings.STATIC_URL, document_root=settings.STATIC_PATH)

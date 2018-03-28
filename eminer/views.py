@@ -9,7 +9,7 @@ from django.views.decorators.clickjacking import xframe_options_exempt, xframe_o
 
 
 def BlogView(request, post_name=None, count=1, tag=None):
-    recent = NewEntry.objects.filter(published=True).order_by('-modified')[:10]
+    recent = NewEntry.objects.filter(published=True).order_by('-posted')[:10]
     user_ip = request.META.get('REMOTE_ADDR')
     if post_name:
         posts = NewEntry.objects.filter(slug=post_name)
@@ -18,11 +18,11 @@ def BlogView(request, post_name=None, count=1, tag=None):
         posts = NewEntry.objects.filter(Q(tag = tags) & Q(published = True))
     else:
         count = int(count)
-        posts = NewEntry.objects.filter(published=True).order_by('-modified')[count-1:count]
+        posts = NewEntry.objects.filter(published=True).order_by('-posted')[count-1:count]
     return render(request, 'eminer/index.html', {'posts':posts, 'count':count, 'recent':recent, 'user_ip':user_ip})
 
 def About(request):
-    recent = NewEntry.objects.filter(published=True).order_by('-modified')[:10]
+    recent = NewEntry.objects.filter(published=True).order_by('-posted')[:10]
     return render(request, 'eminer/about.html', {'recent':recent})
 
 
@@ -31,7 +31,7 @@ def About(request):
 @login_required
 def AddPost(request, post_name_edit=None):
     not_published = NewEntry.objects.filter(published = False).order_by('-modified')
-    recent = NewEntry.objects.filter(published=True).order_by('-modified')[:10]
+    recent = NewEntry.objects.filter(published=True).order_by('-posted')[:10]
     if post_name_edit:
         if request.method == 'POST':
             record = NewEntry.objects.get(slug = post_name_edit)
@@ -67,7 +67,7 @@ def AddPost(request, post_name_edit=None):
 # Add tag
 @login_required
 def AddTag(request):
-    recent = NewEntry.objects.filter(published=True).order_by('-modified')[:10]
+    recent = NewEntry.objects.filter(published=True).order_by('-posted')[:10]
     if request.method == 'POST':
         form = TagForm(request.POST)
 
@@ -92,14 +92,14 @@ def AddTag(request):
 def PublisherView(request, post_name_edit=None):
     not_published = NewEntry.objects.filter(published = False).order_by('-modified')
     published_posts = NewEntry.objects.filter(published = True).order_by('-modified')[:10]
-    recent = NewEntry.objects.filter(published=True).order_by('-modified')[:10]
+    recent = NewEntry.objects.filter(published=True).order_by('-posted')[:10]
 
     return render(request, 'eminer/admin_view.html', {'not_published':not_published, 'published_posts':published_posts, 'recent':recent})
 
 @xframe_options_deny
 @user_passes_test(lambda u: u.is_staff)
 def PublishView(request, post_name=None):
-    recent = NewEntry.objects.filter(published=True).order_by('-modified')[:10]
+    recent = NewEntry.objects.filter(published=True).order_by('-posted')[:10]
     if post_name:
         if request.method == 'POST':
             item = NewEntry.objects.get(slug = post_name)

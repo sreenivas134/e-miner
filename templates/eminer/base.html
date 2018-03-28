@@ -64,12 +64,25 @@
         .index_html{
             display:block;
         }
+        .container {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+        footer {
+		    position: relative !important;
+		    bottom: 0;
+		    width: 100%;
+		    overflow:hidden;
+		}
     </style>
 
 
 
 </head>
 <body>
+<div class='container'>
+
     <div class="next_page">
     {% if count %}
 
@@ -83,50 +96,51 @@
     {% endif %}
     </div>
 
-<div id='wrapper'>
-    <div id="fb-root" ></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <div id='wrapper' class='row'>
+        <div id="fb-root" ></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 
 
-    <div id="head" style="background: url({% static 'images/img02.jpg' %}) no-repeat; background-size:cover;">
-      <div id="header">
-      <div id="topmenu">
-        <ul>
-          <li><a href="{% url 'home' %}" id="topmenu1" accesskey="1" style="background: url({% static 'images/img03.gif' %}) no-repeat left center;">Home</a></li>
-          <li><a href="mailto:sreenivaspallapu.iiit@gmail.com" id="topmenu2" accesskey="2" style="background: url({% static 'images/img04.gif' %}) no-repeat left center;">Contact</a></li>
-          <li><a href="#" id="topmenu3" accesskey="3" style="background: url({% static 'images/img05.gif' %}) no-repeat left center;">Sitemap</a></li>
-        </ul>
-      </div>
-      <div id="logo">
-        <h1><a href="http://eminer.pythonanywhere.com">E-Miner</a></h1>
-        <h2 style="color:white;">Following my passion!</h2>
-      </div>
-      </div>
-    </div><br/>
-            <div class='nav_bar' id='menu' style="background: url({% static 'images/img06.gif' %}) repeat-x;">
+        <div id="head" style="background: url({% static 'images/img02.jpg' %}) no-repeat; background-size:cover;">
+          <div id="header">
+              <div id="topmenu">
                 <ul>
-                <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'home' %}">Home</a></li>
-                <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'about' %}">About</a></li>
-                {% if user.is_superuser %}
-                <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'add_post' %}">AddPost</a></li></ul>
-                {% endif %}
-                {% if user.is_superuser %}
-                <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'publisher-view' %}">AdminView</a></li>
-                {% endif %}
-                {% if user.is_authenticated %}
-                <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'auth_logout' %}">LogOut</a></li>
-                {% else %}
-                <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'registration_register' %}">Register Here</a></li>
-                <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'auth_login' %}">Login</a></li>
-                {% endif %}
-            </div>
-    <div class='index_view' id='container2'>
+                  <li><a href="{% url 'home' %}" id="topmenu1" accesskey="1" style="background: url({% static 'images/img03.gif' %}) no-repeat left center;">Home</a></li>
+                  <li><a href="mailto:sreenivaspallapu.iiit@gmail.com" id="topmenu2" accesskey="2" style="background: url({% static 'images/img04.gif' %}) no-repeat left center;">Contact</a></li>
+                  <li><a href="#" id="topmenu3" accesskey="3" style="background: url({% static 'images/img05.gif' %}) no-repeat left center;">Sitemap</a></li>
+                </ul>
+              </div>
+              <div id="logo">
+                <h1><a href="http://eminer.pythonanywhere.com">E-Miner</a></h1>
+                <h2 style="color:white;">Following my passion!</h2>
+              </div>
+          </div>
+        </div><br/>
+        <div class='nav_bar' id='menu' style="background: url({% static 'images/img06.gif' %}) repeat-x;">
+            <ul>
+            <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'home' %}">Home</a></li>
+            <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'about' %}">About</a></li>
+            {% if user.is_superuser %}
+            <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'add_post' %}">AddPost</a></li></ul>
+            {% endif %}
+            {% if user.is_superuser %}
+            <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'publisher-view' %}">AdminView</a></li>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'auth_logout' %}">LogOut</a></li>
+            {% else %}
+            <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'registration_register' %}">Register Here</a></li>
+            <li><a style="background: url({% static 'images/img06.gif' %}) no-repeat;" href="{% url 'auth_login' %}">Login</a></li>
+            {% endif %}
+        </div>
+        <div class='index_view' id='container2'>
             <div class='side_view' id='sidebar'>
                 <div id="follow_author" class="boxed" style="background: url({% static 'images/img07.gif' %}) repeat-x">
                     <h4 class="title" style="background: url({% static 'images/img08.gif' %}) no-repeat 10px 50%;">Follow Author on ...</h4>
@@ -147,7 +161,7 @@
                     {% if recent %}
                     <ul>
                     {% for post in recent %}
-                        <li><h5 style="background: url({% static 'images/img09.gif' %}) no-repeat left center">{{ post.modified }}</h5>
+                        <li><h5 style="background: url({% static 'images/img09.gif' %}) no-repeat left center">{{ post.posted }}</h5>
                         <p><a href="/{{ post.slug }}/">{{ post.title }}</a></p></li>
                     {% endfor %}
                      </ul>
@@ -194,12 +208,13 @@
             </div>
         <br/>
 
-    </div>
+        </div>
 
-    <br/>
-    <div class='copy_view' id='footer'>
-        <span style='position:relative;top:15px;float:right;'>&copy 2015 Eminer.pythonanywhere.com</span>
+        <br/>
     </div>
+    <footer class='copy_view' id='footer'>
+        <span style='position:relative;top:15px;float:right;'>&copy 2015 Eminer.pythonanywhere.com</span>
+    </footer>
 </div>
 </body>
 </html>
